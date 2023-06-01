@@ -1,0 +1,449 @@
+[
+    {
+        "id": "012802dc780f558b",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "71c6726da864a45f",
+        "type": "mqtt in",
+        "z": "012802dc780f558b",
+        "name": "",
+        "topic": "ATV182713MUSIC/GeneroMusical",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "1b105c582072f86c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 620,
+        "y": 340,
+        "wires": [
+            [
+                "20b896c35766103f",
+                "1687f0db47ddbb3a"
+            ]
+        ]
+    },
+    {
+        "id": "8997f0ffeb15e7c1",
+        "type": "http request",
+        "z": "012802dc780f558b",
+        "name": "GET: POP playlist",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.spotify.com/v1/playlists/468AZc14hsxEv4nqjPhfer/tracks",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "Authorization",
+                "keyValue": "",
+                "valueType": "other",
+                "valueValue": "Bearer BQC1OZBARVY6Lfcb-yckerkwBqcOm2LrN9-8yQRnhYFDTfXBmWO9zyHoPCHdfevNyncq4ggW14DgWiaxoaF_t-yDA54GO5-0R8a2AVbx2EB1ucJbsRA"
+            }
+        ],
+        "x": 290,
+        "y": 80,
+        "wires": [
+            [
+                "9b06f79c5c7bc565"
+            ]
+        ]
+    },
+    {
+        "id": "feb2094a20ab0349",
+        "type": "http request",
+        "z": "012802dc780f558b",
+        "name": "GET: MPB playlist",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.spotify.com/v1/playlists/0Ax3hHLCeY4VcR2brmv7iq/tracks",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "Authorization",
+                "keyValue": "",
+                "valueType": "other",
+                "valueValue": "Bearer BQC1OZBARVY6Lfcb-yckerkwBqcOm2LrN9-8yQRnhYFDTfXBmWO9zyHoPCHdfevNyncq4ggW14DgWiaxoaF_t-yDA54GO5-0R8a2AVbx2EB1ucJbsRA"
+            }
+        ],
+        "x": 290,
+        "y": 160,
+        "wires": [
+            [
+                "1d43f7de67461881"
+            ]
+        ]
+    },
+    {
+        "id": "1c6e98e907bd355d",
+        "type": "http request",
+        "z": "012802dc780f558b",
+        "name": "GET: SERTANEJO playlist",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.spotify.com/v1/playlists/4PwcA0KkMa0PTmxMfmSATX/tracks",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "Authorization",
+                "keyValue": "",
+                "valueType": "other",
+                "valueValue": "Bearer BQC1OZBARVY6Lfcb-yckerkwBqcOm2LrN9-8yQRnhYFDTfXBmWO9zyHoPCHdfevNyncq4ggW14DgWiaxoaF_t-yDA54GO5-0R8a2AVbx2EB1ucJbsRA"
+            }
+        ],
+        "x": 320,
+        "y": 240,
+        "wires": [
+            [
+                "f73e3c5b0c6b0f64"
+            ]
+        ]
+    },
+    {
+        "id": "20a29231208cf0eb",
+        "type": "inject",
+        "z": "012802dc780f558b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "8997f0ffeb15e7c1"
+            ]
+        ]
+    },
+    {
+        "id": "9b06f79c5c7bc565",
+        "type": "function",
+        "z": "012802dc780f558b",
+        "name": "Get pop music",
+        "func": "var indice;\nindice = parseInt(Math.random() * 6);\nmsg.payload = msg.payload.items[indice].track.external_urls.spotify;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 80,
+        "wires": [
+            [
+                "20b896c35766103f"
+            ]
+        ]
+    },
+    {
+        "id": "1d43f7de67461881",
+        "type": "function",
+        "z": "012802dc780f558b",
+        "name": "Get mpb music",
+        "func": "var indice;\nindice = parseInt(Math.random() * 6);\nmsg.payload = msg.payload.items[indice].track.external_urls.spotify;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 160,
+        "wires": [
+            [
+                "20b896c35766103f"
+            ]
+        ]
+    },
+    {
+        "id": "f73e3c5b0c6b0f64",
+        "type": "function",
+        "z": "012802dc780f558b",
+        "name": "Get sertanejo music",
+        "func": "var indice;\nindice = parseInt(Math.random() * 6);\nmsg.payload = msg.payload.items[indice].track.external_urls.spotify;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 240,
+        "wires": [
+            [
+                "20b896c35766103f"
+            ]
+        ]
+    },
+    {
+        "id": "20b896c35766103f",
+        "type": "join",
+        "z": "012802dc780f558b",
+        "name": "Receive Musics",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "payload",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "4",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 820,
+        "y": 140,
+        "wires": [
+            [
+                "2c39dcce43469188",
+                "092744dca9ace8bb"
+            ]
+        ]
+    },
+    {
+        "id": "2c39dcce43469188",
+        "type": "function",
+        "z": "012802dc780f558b",
+        "name": "Choose music",
+        "func": "var music_0 = msg.payload[0]; // POP\nvar music_1 = msg.payload[1]; // MPB\nvar music_2 = msg.payload[2]; // SERTANEJO\nvar genero = msg.payload[3];  // Gênero musical escolhido\nif (genero === \"POP\") {\n    msg.payload = \"Gênero escolhido: POP!\\n\" + music_0;\n} else if (genero === \"MPB\") {\n    msg.payload = \"Gênero escolhido: MPB!\\n\" + music_1;\n} else if (genero === \"SERTANEJO\") {\n    msg.payload = \"Gênero escolhido: SERTANEJO!\\n\" + music_2;\n} else if (genero === undefined) {\n    msg.payload = \"Fazer requisição novamente\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 220,
+        "wires": [
+            [
+                "6045ae5f7c0b4da7",
+                "094c3b7149f04653",
+                "fb13dc6b1f8ff518"
+            ]
+        ]
+    },
+    {
+        "id": "6045ae5f7c0b4da7",
+        "type": "debug",
+        "z": "012802dc780f558b",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "effb5d08846350d8",
+        "type": "inject",
+        "z": "012802dc780f558b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 160,
+        "wires": [
+            [
+                "feb2094a20ab0349"
+            ]
+        ]
+    },
+    {
+        "id": "dd6333bdd1b303e0",
+        "type": "inject",
+        "z": "012802dc780f558b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 240,
+        "wires": [
+            [
+                "1c6e98e907bd355d"
+            ]
+        ]
+    },
+    {
+        "id": "1687f0db47ddbb3a",
+        "type": "debug",
+        "z": "012802dc780f558b",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "092744dca9ace8bb",
+        "type": "debug",
+        "z": "012802dc780f558b",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "094c3b7149f04653",
+        "type": "node-red-contrib-whatsapp-cmb-send-message",
+        "z": "012802dc780f558b",
+        "name": "Send music via WhatsApp",
+        "account": "eacfc47f5ccc3638",
+        "text": "payload",
+        "inputtypemessage": "msg",
+        "rejectssl": false,
+        "x": 1210,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fb13dc6b1f8ff518",
+        "type": "influxdb out",
+        "z": "012802dc780f558b",
+        "influxdb": "9389dcae207623ae",
+        "name": "Music DB",
+        "measurement": "music",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "32143621@mackenzista.com.br",
+        "bucket": "bucketMusica",
+        "x": 1180,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "1b105c582072f86c",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "eacfc47f5ccc3638",
+        "type": "node-red-contrib-whatsapp-cmb-account",
+        "name": "Projeto Musical"
+    },
+    {
+        "id": "9389dcae207623ae",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "https://us-east-1-1.aws.cloud2.influxdata.com",
+        "rejectUnauthorized": true
+    }
+]
